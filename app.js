@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const _=require('lodash')
 const date = require(__dirname + "/date.js");
 
-mongoose.connect("mongodb://kabirhawa:Ka%40270602@127.0.0.1:27017/todolist", {
+mongoose.connect("mongodb+srv://kabirhawa:Test%40123@cluster0.t6dx2lu.mongodb.net/todolist", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   authSource: "admin", // Or the appropriate authentication database
@@ -45,43 +45,43 @@ let arr = [
   "saturday",
 ];
 
-// app.get("/", function (req, res) {
-//   Item.find()
-//     .then((data) => {
-//       res.render("list", {
-//         work_Title: "Today is! " + day,
-//         list_items: data,
-//         route: "",
-//       });
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// });
+app.get("/", function (req, res) {
+  Item.find()
+    .then((data) => {
+      res.render("list", {
+        work_Title: "Today is! " + day,
+        list_items: data,
+        route: "",
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
-// app.post("/", function (req, res) {
+app.post("/", function (req, res) {
 
-//   let item = req.body.list_item;
-//   let type = req.body.list;
-//   const newItem = new Item({
-//     name: item,
-//   });
-//   newItem
-//     .save()
-//     .then((data) => {
-//       console.log(data);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-//   if (type === "Work") {
-//     workItem.push(item);
-//     res.redirect("/work");
-//   } else {
-//     items.push(item);
-//     res.redirect("/");
-//   }
-// });
+  let item = req.body.list_item;
+  let type = req.body.list;
+  const newItem = new Item({
+    name: item,
+  });
+  newItem
+    .save()
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  if (type === "Work") {
+    workItem.push(item);
+    res.redirect("/work");
+  } else {
+    items.push(item);
+    res.redirect("/");
+  }
+});
 
 app.post("/delete", function (req, res) {
   console.log(req.body);
