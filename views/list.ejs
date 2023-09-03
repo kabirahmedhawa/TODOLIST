@@ -1,0 +1,35 @@
+<%- include('header'); %>
+<div class="box" id="heading">
+  <h2><%= work_Title %></h2>
+</div>
+<div class="box">
+  <% if (list_items) { %> <% list_items.forEach(function (item) { %>
+  <form method="post" name="" action="/delete">
+    <div class="item">
+      <input
+        value="<%= item._id %>"
+        name="checkbox"
+        type="checkbox"
+        onchange="this.form.submit()"
+      />
+      <p><%= item.name %></p>
+      <input type="hidden" name="listname" value="<%= route ? route : ' ' %>" ></input>
+    </div>
+
+  </form>
+  <% }); %> <% } %>
+
+  <form class="item" method="post" action="<%= route ? route : '/' %>">
+    <label for="list Item Name">List Item Name</label><br />
+    <input
+      type="text"
+      placeholder="Enter New Item"
+      name="list_item"
+      required
+      autocomplete="off"
+    />
+    <button type="submit" name="list" value="<%= work_Title %>">+</button>
+  </form>
+</div>
+
+<%- include('footer'); %>
